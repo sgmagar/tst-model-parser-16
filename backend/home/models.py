@@ -4,4 +4,3 @@ class Hello(models.Model):
     'Generated Model'
     hi = models.BigIntegerField()
     hey = models.CharField(null=True,blank=True,max_length=256,)
-    mey = models.BigIntegerField(null=True,blank=True,)
