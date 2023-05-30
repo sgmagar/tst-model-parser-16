@@ -3,4 +3,3 @@ from django.db import models
 class Hello(models.Model):
     'Generated Model'
     hi = models.BigIntegerField()
-    hey = models.BigIntegerField(null=True,blank=True,)
