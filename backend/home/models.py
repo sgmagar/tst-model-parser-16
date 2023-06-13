@@ -7,3 +7,4 @@ class Hello(models.Model):
 class Hi(models.Model):
     'Generated Model'
     how = models.BigIntegerField()
+    why = models.BigIntegerField(null=True,blank=True,)
