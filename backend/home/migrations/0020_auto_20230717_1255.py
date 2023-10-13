@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('home', '0019_delete_hi'),
+        ("home", "0019_delete_hi"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='hello',
-            name='hi',
+            model_name="hello",
+            name="hi",
         ),
         migrations.AddField(
-            model_name='hello',
-            name='hiii',
+            model_name="hello",
+            name="hiii",
             field=models.BigIntegerField(blank=True, null=True),
         ),
     ]

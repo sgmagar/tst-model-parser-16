@@ -1,4 +1,3 @@
-
 import requests
 import base64
 import urllib.parse
@@ -6,6 +5,7 @@ from django.conf import settings
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
+
 
 class BaseConnectorViewSet(viewsets.GenericViewSet):
     BASE_URL = None
@@ -15,9 +15,11 @@ class BaseConnectorViewSet(viewsets.GenericViewSet):
     TOKEN = None
     SECRET = None
     QUERY_NAME = None
-    
+
     def _generate_basic_token(self):
-        return base64.b64encode(f"{self.USERNAME}:{self.PASSWORD}".encode("utf-8")).decode("utf-8")
+        return base64.b64encode(
+            f"{self.USERNAME}:{self.PASSWORD}".encode("utf-8")
+        ).decode("utf-8")
 
     def _get_authorization_value(self):
         if self.AUTH_TYPE == "basic":
@@ -34,20 +36,30 @@ class BaseConnectorViewSet(viewsets.GenericViewSet):
             return {}
         return {self.QUERY_NAME: self.SECRET}
 
-    def _api_call(self, url, request_type="get", payload=None, headers=None, params=None):
+    def _api_call(
+        self, url, request_type="get", payload=None, headers=None, params=None
+    ):
         payload = payload or {}
         headers = headers or {}
         params = params or {}
         base_url = self.BASE_URL.endswith("/") and self.BASE_URL or f"{self.BASE_URL}/"
         url = urllib.parse.urljoin(base_url, url.lstrip("/"))
-        response = requests.request(request_type, url, data=payload, params={**self._get_params(), **params}, headers={**self._get_headers(), **headers})
+        response = requests.request(
+            request_type,
+            url,
+            data=payload,
+            params={**self._get_params(), **params},
+            headers={**self._get_headers(), **headers},
+        )
         try:
             return response.json()
         except Exception:
             return {}
 
+
 class NewConnector2ViewSet(BaseConnectorViewSet):
-    BASE_URL = "https://dsd.sdds/dsdh"
+    PASSWORD = settings.NEW_CONNECTOR2_PASSWORD
+    USERNAME = settings.NEW_CONNECTOR2_USERNAME
+    BASE_URL = "https://dsd.sdds/dsdh/"
     AUTH_TYPE = "basic"
     IDENTIFIER = "NEW_CONNECTOR2"
- 

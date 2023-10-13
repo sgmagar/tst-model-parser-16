@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('home', '0020_auto_20230717_1255'),
+        ("home", "0020_auto_20230717_1255"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='hello',
-            name='ssssdsd',
+            model_name="hello",
+            name="ssssdsd",
             field=models.BigIntegerField(blank=True, null=True),
         ),
     ]
