@@ -72,7 +72,7 @@ INSTALLED_APPS = [
 ]
 LOCAL_APPS = [
     'home',
-    'users.apps.UsersConfig',
+    'users.apps.UsersConfig',"connectors"
 ]
 THIRD_PARTY_APPS = [
     'rest_framework',
@@ -287,3 +287,5 @@ if GS_BUCKET_NAME:
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     GS_DEFAULT_ACL = "publicRead"
+NEW_CONNECTOR2_USERNAME = env.str("NEW_CONNECTOR2_USERNAME", "")
+NEW_CONNECTOR2_PASSWORD = env.str("NEW_CONNECTOR2_PASSWORD", "")
